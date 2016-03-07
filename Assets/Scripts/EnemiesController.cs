@@ -6,22 +6,23 @@ public class EnemiesController : MonoBehaviour
     [SerializeField]
     private float duration = 3f;
     
-    private Factory factory;
+    private EnemiesFactory _enemiesFactory;
 
     void Awake()
     {
-        factory = GetComponent<Factory>(); 
+        _enemiesFactory = GetComponent<EnemiesFactory>(); 
     }
 
     void Start ()
     {
         InvokeRepeating("CreateEnemy", duration, duration);
+        Messenger.Broadcast<WindowsId>(EventTypes.SHOW_WINDOW, WindowsId.InfoWindow); 
     } 
 	
 	void CreateEnemy()
 	{
-        Factory.enemiesType enemiesType = Utils.RandomEnumValue<Factory.enemiesType>();  
-        GameObject enemy = factory.Build(enemiesType);
+        EnemiesFactory.enemiesType enemiesType = Utils.RandomEnumValue<EnemiesFactory.enemiesType>();  
+        GameObject enemy = _enemiesFactory.Build(enemiesType);
 	    AddSprite(enemy, Resources.Load("monster") as Texture2D);
 
         enemy.transform.position = new Vector3(Random.Range(-2.5f, 2.5f), 6.5f, 0);

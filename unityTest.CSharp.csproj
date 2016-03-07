@@ -87,11 +87,17 @@
     <Compile Include="Assets\Scripts\libs\Messenger.cs" />
     <Compile Include="Assets\Scripts\namesStorage\EventTypes.cs" />
     <Compile Include="Assets\Scripts\namesStorage\Names.cs" />
-    <Compile Include="Assets\Scripts\other\Factory.cs" />
+    <Compile Include="Assets\Scripts\namesStorage\WindowsId.cs" />
+    <Compile Include="Assets\Scripts\other\EnemiesFactory.cs" />
     <Compile Include="Assets\Scripts\other\LoadLevel.cs" />
     <Compile Include="Assets\Scripts\other\Timer.cs" />
     <Compile Include="Assets\Scripts\other\Utils.cs" />
+    <Compile Include="Assets\Scripts\ui\BaseWindow.cs" />
     <Compile Include="Assets\Scripts\ui\HealthPanel.cs" />
+    <Compile Include="Assets\Scripts\ui\IWindow.cs" />
+    <Compile Include="Assets\Scripts\ui\InfoWindow.cs" />
+    <Compile Include="Assets\Scripts\ui\WindowsController.cs" />
+    <Compile Include="Assets\Scripts\ui\WindowsFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Resources\enemies.xml" />
