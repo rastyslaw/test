@@ -22,10 +22,12 @@ public class EnemiesController : MonoBehaviour
 	{
         Factory.enemiesType enemiesType = Utils.RandomEnumValue<Factory.enemiesType>();  
         GameObject enemy = factory.Build(enemiesType);
-	    enemy.transform.position = new Vector3(Random.Range(-2.5f, 2.5f), 6.5f, 0);
+	    AddSprite(enemy, Resources.Load("monster") as Texture2D);
+
+        enemy.transform.position = new Vector3(Random.Range(-2.5f, 2.5f), 6.5f, 0);
 	}
 
-    void AddSprite(GameObject enemy, Texture2D _texture) 
+    void AddSprite(GameObject enemy, Texture2D _texture)  
     {
         Sprite newSprite = Sprite.Create(_texture, new Rect(0f, 0f, _texture.width, _texture.height), new Vector2(0.5f, 0.5f), 128f);
         SpriteRenderer sprRenderer = enemy.GetComponent<SpriteRenderer>();

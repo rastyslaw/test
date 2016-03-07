@@ -2,8 +2,7 @@
 using System.Collections.Generic; 
 
 public class WeaponController : MonoBehaviour {
-
-    [SerializeField]
+    
     private float duration = 0.5f;
     
     [SerializeField]
@@ -13,10 +12,15 @@ public class WeaponController : MonoBehaviour {
     private int pooledAmount = 8;
 
     private const float WEAPON_SIZE = 2.0f;
+    private Animator animator;
 
-    private List<GameObject> fireballs;   
+    private List<GameObject> fireballs;
 
-    // Use this for initialization
+    void Awake()
+    {
+        animator = gameObject.GetComponent<Animator>(); 
+    }
+
     void Start ()
     {
         fireballs = new List<GameObject>();
@@ -27,6 +31,18 @@ public class WeaponController : MonoBehaviour {
             fireballs.Add(obj);
         }
         InvokeRepeating("Fire", duration, duration);
+        animator.speed = 2/duration*0.28f;
+    }
+    public void Control()
+    {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            print("space");
+        }
+        if (Input.GetKey(KeyCode.RightControl))
+        {
+           Debug.Log("RightControl");
+        }
     }
 
     void Fire()

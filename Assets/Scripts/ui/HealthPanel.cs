@@ -9,7 +9,7 @@ public class HealthPanel : MonoBehaviour
 
     void Start ()
     {
-        _curHealth = _maxHealth = (float) DataModel.GetValue(Names.HP);
+        _curHealth = _maxHealth = 100.0f; //(float) DataModel.GetValue(Names.HP);
         _healtBar = transform.Find("fill").gameObject;
         Messenger.AddListener<float>(EventTypes.DAMAGE, OnGetDamage);
 
