@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<enemiesCollection>
+	<enemies>
+		<enemy id="1" type="Enemy1">
+			<resource>monster2</resource>
+			<hp>100</hp>
+			<damage>5</damage>
+			<attackSpeed>1</attackSpeed>
+			<speed>4</speed>
+			<distance>3</distance>
+		</enemy>
+		<enemy id="2" type="Enemy2">
+			<resource>monster</resource> 
+			<hp>200</hp>
+			<damage>10</damage>
+			<attackSpeed>2</attackSpeed>
+			<speed>3</speed>
+			<distance>1</distance>
+		</enemy>
+	</enemies>
+</enemiesCollection>
