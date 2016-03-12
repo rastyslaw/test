@@ -1,4 +1,4 @@
 sceneSetups:
-- path: C:/Users/rasty_000/Desktop/ch11/Assets/Startup.unity
+- path: Assets/main.unity
   isLoaded: 1
   isActive: 1

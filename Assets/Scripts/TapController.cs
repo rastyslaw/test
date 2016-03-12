@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 public class TapController : MonoBehaviour {
 
@@ -11,11 +12,11 @@ public class TapController : MonoBehaviour {
     private const float MIN_ANGLE = -0.6f;
     private const float MAX_ANGLE = 0.6f;
 
-    private bool direction; 
+    private bool direction;
     
 	void Update ()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !PauseController.Paused && !EventSystem.current.currentSelectedGameObject)
         {
             Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             direction = pz.x > 0;

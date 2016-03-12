@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\Fireball.cs" />
     <Compile Include="Assets\Scripts\HpBar.cs" />
+    <Compile Include="Assets\Scripts\LocaleModel.cs" />
     <Compile Include="Assets\Scripts\ParseXMLCommand.cs" />
     <Compile Include="Assets\Scripts\TapController.cs" />
     <Compile Include="Assets\Scripts\WeaponController.cs" />
@@ -90,18 +91,22 @@
     <Compile Include="Assets\Scripts\namesStorage\WindowsId.cs" />
     <Compile Include="Assets\Scripts\other\EnemiesFactory.cs" />
     <Compile Include="Assets\Scripts\other\LoadLevel.cs" />
+    <Compile Include="Assets\Scripts\other\PauseController.cs" />
+    <Compile Include="Assets\Scripts\other\PauseOnSuspend.cs" />
     <Compile Include="Assets\Scripts\other\Timer.cs" />
     <Compile Include="Assets\Scripts\other\Utils.cs" />
     <Compile Include="Assets\Scripts\ui\BaseWindow.cs" />
     <Compile Include="Assets\Scripts\ui\HealthPanel.cs" />
     <Compile Include="Assets\Scripts\ui\IWindow.cs" />
     <Compile Include="Assets\Scripts\ui\InfoWindow.cs" />
+    <Compile Include="Assets\Scripts\ui\OptionButton.cs" />
     <Compile Include="Assets\Scripts\ui\WindowsController.cs" />
     <Compile Include="Assets\Scripts\ui\WindowsFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Resources\enemies.xml" />
     <None Include="Assets\Resources\options.xml" />
+    <None Include="Assets\Resources\ru.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

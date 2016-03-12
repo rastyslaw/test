@@ -16,10 +16,14 @@ public class EnemiesController : MonoBehaviour
     void Start ()
     {
         InvokeRepeating("CreateEnemy", duration, duration);
-        Messenger.Broadcast<WindowsId>(EventTypes.SHOW_WINDOW, WindowsId.InfoWindow); 
-    } 
-	
-	void CreateEnemy()
+        Messenger.Broadcast<WindowsId>(EventTypes.SHOW_WINDOW, WindowsId.InfoWindow);
+        StartCoroutine(Timer.Start(3.0f, true, () =>
+        {
+            Messenger.Broadcast<WindowsId>(EventTypes.HIDEW_WINDOW, WindowsId.InfoWindow); 
+        }));
+    }
+    
+    void CreateEnemy()
 	{
         EnemiesFactory.enemiesType enemiesType = Utils.RandomEnumValue<EnemiesFactory.enemiesType>();  
         GameObject enemy = _enemiesFactory.Build(enemiesType);

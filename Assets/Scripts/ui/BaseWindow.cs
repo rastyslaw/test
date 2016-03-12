@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEditor;
 
 public abstract class BaseWindow : IWindow
 {
+    protected WindowsId type; 
     protected GameObject Body;
     protected string Folder = "Prefabs/GUI/";
     protected string Name;
@@ -11,8 +13,8 @@ public abstract class BaseWindow : IWindow
     {
         var body = Resources.Load(Folder + (Name ?? ToString()));
         Body = WindowsFactory.Build(body as GameObject);
-        Body.name = ToString();  
-
+        Body.name = ToString();
+  
     }
 
     public virtual void Show()
@@ -27,6 +29,11 @@ public abstract class BaseWindow : IWindow
     public virtual void Hide()
     {
         Body.SetActive(false);
+    }
+
+    protected virtual void Close()
+    {
+        Messenger.Broadcast<WindowsId>(EventTypes.HIDEW_WINDOW, type);  
     }
 
     public virtual void Prepare()
