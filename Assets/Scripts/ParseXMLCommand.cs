@@ -6,12 +6,7 @@ public class ParseXMLCommand : MonoBehaviour {
     
 	void Start () 
     {
-        EnemyContainer cont = EnemyContainer.Load("enemies");
-
-        DataModel.SetValue(Names.ENEMIES, cont);
-
-        DataModel.SetValue(Names.HP, 100.0f); 
-
-        SceneManager.LoadScene(1);
+        EnemyContainer cont = EnemyContainer.Load(Names.ENEMIES);
+        DataModel.SetValue(Names.ENEMIES, cont.enemies);
     }
 }

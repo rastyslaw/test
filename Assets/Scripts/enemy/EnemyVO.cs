@@ -13,7 +13,7 @@ public class EnemyVO
     public string resource;
 
     [XmlElement("hp")]
-    public int hp;
+    public float hp;
 
     [XmlElement("damage")]
     public int damage;

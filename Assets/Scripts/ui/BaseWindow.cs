@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEditor;
 
 public abstract class BaseWindow : IWindow
 {
@@ -13,8 +11,7 @@ public abstract class BaseWindow : IWindow
     {
         var body = Resources.Load(Folder + (Name ?? ToString()));
         Body = WindowsFactory.Build(body as GameObject);
-        Body.name = ToString();
-  
+        Body.name = ToString();  
     }
 
     public virtual void Show()

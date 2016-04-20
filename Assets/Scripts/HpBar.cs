@@ -13,8 +13,8 @@ public class HpBar:MonoBehaviour {
     private Vector2 pos = new Vector2(0, 0);
     private Vector2 size = new Vector2(100, 20);
 
-    private IEnemy enemy;
-    public IEnemy Enemy
+    private AbstractEnemy enemy;
+    public AbstractEnemy Enemy
     {
         get { return enemy; }
         set

@@ -9,6 +9,7 @@ public class EnemiesFactory : MonoBehaviour {
     {
         Enemy1,
         Enemy2,
+        Enemy3,
     }
 
     public GameObject Build(enemiesType type)

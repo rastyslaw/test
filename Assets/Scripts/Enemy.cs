@@ -8,16 +8,11 @@ public class Enemy : MonoBehaviour {
 
     private const float bottom = 5.0f; 
 
-    private float distance = 2.0f;
-    private float speed = 1.1f;
-    private float attackSpeed = 2.0f;
-    private float damage = 5.0f;
-
-    private const float MaxHealth = 100.0f;
+    private float MaxHealth;
     private float _curHealth;
 
     private GameObject _healtBar;
-    private IEnemy enemy;
+    private AbstractEnemy enemy;
 
     public float CurHealth
     {
@@ -37,31 +32,31 @@ public class Enemy : MonoBehaviour {
     
     void Start()
     {
-        enemy = GetComponent<IEnemy>(); 
+        enemy = GetComponent<AbstractEnemy>(); 
         GameObject canvas = transform.Find("Canvas").gameObject;
         if (canvas != null)  
         {
             _healtBar = canvas.transform.Find("fill").gameObject;
         } 
-        _curHealth = MaxHealth;  
+        _curHealth = MaxHealth = enemy.Data.hp;  
     }
 
     void Update()
     {
-        if (transform.position.y > -(bottom - distance))
+        if (transform.position.y > -(bottom - enemy.Data.distance))
         {
-            transform.Translate(0, -speed*Time.deltaTime, 0);
+            transform.Translate(0, -enemy.Data.speed *Time.deltaTime, 0);
         }
         else if(!inAttack)
         {
             inAttack = true;
-            InvokeRepeating("Attack", attackSpeed, attackSpeed);
+            InvokeRepeating("Attack", enemy.Data.attackSpeed, enemy.Data.attackSpeed);
         }
     }
 
     void Attack() 
     {
         enemy.Attack(); 
-        Messenger.Broadcast<float>(EventTypes.DAMAGE, damage);   
+        Messenger.Broadcast<float>(EventTypes.DAMAGE, enemy.Data.damage);   
     }
 }
