@@ -4,7 +4,7 @@ using System.Collections;
 public class Fireball : MonoBehaviour {
 
     public float speed = 10.0f;
-    private float damage = 30.0f; 
+    private float damage = 40.0f; 
     private CircleCollider2D circleCollider;
 //  private ParticleSystem trail;
     private SpriteRenderer bullet;

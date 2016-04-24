@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>5.3.4f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -75,6 +77,10 @@
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\Fireball.cs" />
     <Compile Include="Assets\Scripts\HpBar.cs" />
+    <Compile Include="Assets\Scripts\libs\test\ParallelTestCommand.cs" />
+    <Compile Include="Assets\Scripts\libs\test\TestCommand4.cs" />
+    <Compile Include="Assets\Scripts\libs\test\TestCommand2.cs" />
+    <Compile Include="Assets\Scripts\libs\test\TestCommand3.cs" />
     <Compile Include="Assets\Scripts\LocaleModel.cs" />
     <Compile Include="Assets\Scripts\ParseXMLCommand.cs" />
     <Compile Include="Assets\Scripts\TapController.cs" />
@@ -88,6 +94,18 @@
     <Compile Include="Assets\Scripts\enemy\IEnemy.cs" />
     <Compile Include="Assets\Scripts\libs\Callback.cs" />
     <Compile Include="Assets\Scripts\libs\Messenger.cs" />
+    <Compile Include="Assets\Scripts\libs\commands\AbstractMacro .cs" />
+    <Compile Include="Assets\Scripts\libs\commands\AsyncCommand.cs" />
+    <Compile Include="Assets\Scripts\libs\commands\Command.cs" />
+    <Compile Include="Assets\Scripts\libs\commands\CommandCallback.cs" />
+    <Compile Include="Assets\Scripts\libs\commands\IAsyncCommand.cs" />
+    <Compile Include="Assets\Scripts\libs\commands\ICommand.cs" />
+    <Compile Include="Assets\Scripts\libs\commands\IMacro.cs" />
+    <Compile Include="Assets\Scripts\libs\commands\ParallelMacro .cs" />
+    <Compile Include="Assets\Scripts\libs\commands\SequenceMacro .cs" />
+    <Compile Include="Assets\Scripts\libs\test\MacroCommand.cs" />
+    <Compile Include="Assets\Scripts\libs\test\Test.cs" />
+    <Compile Include="Assets\Scripts\libs\test\TestCommand1.cs" />
     <Compile Include="Assets\Scripts\namesStorage\EventTypes.cs" />
     <Compile Include="Assets\Scripts\namesStorage\Names.cs" />
     <Compile Include="Assets\Scripts\namesStorage\WindowsId.cs" />
