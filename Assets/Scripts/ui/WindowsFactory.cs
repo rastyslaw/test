@@ -4,7 +4,7 @@ public class WindowsFactory : MonoBehaviour {
 
     static public GameObject Build(GameObject prefab) 
     {
-        GameObject window = (GameObject)Instantiate(prefab);
+        GameObject window = Instantiate(prefab);
         if (window != null)
         {
             Transform t = window.transform;

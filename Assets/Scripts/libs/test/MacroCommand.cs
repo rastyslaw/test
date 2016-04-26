@@ -11,11 +11,10 @@ namespace commands.test
     {
         public override void Prepare()
         {
-           Add<TestCommand1>();
-           Add<ParallelTestCommand>();
-           Add<TestCommand3>();
+           Add<ParseXMLCommand>();
+           Add<ReadPlayerPrefs>();
 
-            RegisterCompleteCallback(OnComplete);
+           RegisterCompleteCallback(OnComplete);
         }
 
         void OnComplete(bool success)

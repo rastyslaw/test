@@ -4,15 +4,8 @@ using System.Collections;
 public class EnemiesFactory : MonoBehaviour {
 
     public GameObject basic;
-
-    public enum enemiesType
-    {
-        Enemy1,
-        Enemy2,
-        Enemy3,
-    }
-
-    public GameObject Build(enemiesType type)
+    
+    public GameObject Build(EnemyTypes type)
     {
         GameObject enemy = (GameObject)Instantiate(basic, Vector3.zero, Quaternion.identity);
         enemy.name = type.ToString();

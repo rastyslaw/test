@@ -5,11 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class ParseXMLCommand : MonoBehaviour {
     
-	void Start () 
+	void Awake () 
     {
-        EnemyContainer cont = EnemyContainer.Load(Names.ENEMIES);
-        DataModel.SetValue(Names.ENEMIES, cont.enemies);
-
-        Test test = new Test();
+        new MacroCommand().Execute();
     }
 }

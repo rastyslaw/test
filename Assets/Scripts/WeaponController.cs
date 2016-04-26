@@ -26,7 +26,7 @@ public class WeaponController : MonoBehaviour {
         fireballs = new List<GameObject>();
         for (int i = 0; i < pooledAmount; i++)
         {
-            GameObject obj = (GameObject)Instantiate(bullet);
+            GameObject obj = Instantiate(bullet);
             obj.SetActive(false); 
             fireballs.Add(obj);
         }

@@ -6,6 +6,9 @@ public class EnemyVO
     [XmlAttribute("id")]
     public int id;
 
+    [XmlAttribute("stageId")]
+    public int stageId = 1;
+
     [XmlAttribute("type")]
     public string type;
 
@@ -14,6 +17,9 @@ public class EnemyVO
 
     [XmlElement("hp")]
     public float hp;
+
+    [XmlElement("power")]
+    public int power;
 
     [XmlElement("damage")]
     public int damage;

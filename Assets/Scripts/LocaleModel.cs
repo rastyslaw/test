@@ -5,7 +5,7 @@ using System.Xml;
 
 public class LocaleModel
 {
-    private Dictionary<string, XmlNode> xmls = new Dictionary<string, XmlNode>(); 
+    //private Dictionary<string, XmlNode> xmls = new Dictionary<string, XmlNode>(); 
     private Dictionary<string, string> data = new Dictionary<string, string>();
     
     private LocaleModel instance;

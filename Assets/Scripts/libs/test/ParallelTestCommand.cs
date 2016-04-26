@@ -10,7 +10,7 @@ namespace Assets.Scripts.libs.test
     {
         public override void Prepare()
         {
-            Add<TestCommand2>();
+            Add<ReadPlayerPrefs>();
             Add<TestCommand4>();
         }
     }
