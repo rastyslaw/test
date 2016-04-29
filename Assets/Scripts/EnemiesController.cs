@@ -13,7 +13,7 @@ public class EnemiesController : MonoBehaviour
     private EnemiesFactory _enemiesFactory;
     private int totalStagePower;
     private int currentStagePower = 0;
-    private int wavePower;
+    private int _wavePower;
 
     private bool finished;
 
@@ -46,7 +46,8 @@ public class EnemiesController : MonoBehaviour
         int startPower = int.Parse(DataModel.GetValue(Names.START_POWER).ToString()); 
         int bonusPower = int.Parse(DataModel.GetValue(Names.BONUS_POWER).ToString()); 
         totalStagePower = startPower + (stage - 1)*bonusPower;
-        wavePower = totalStagePower/WAVE_COUNT;
+        DataModel.SetValue(Names.STAGE_POWER, totalStagePower);
+        _wavePower = totalStagePower/WAVE_COUNT;
     }
 
     void EnemyTypeSelection()
@@ -56,10 +57,10 @@ public class EnemiesController : MonoBehaviour
 
         //IEnumerable<EnemyVO>  filteringEnemies = enemies.Where(item => stage >= item.stageId);
 
-        IEnumerable<EnemyVO> filteringEnemies = 
+        IEnumerable<EnemyVO> filteringEnemies =
             from enemy in enemies
-            where stage >= enemy.stageId 
-            select enemy; 
+            where stage >= enemy.stageId
+            select enemy;
 
         int randomType = Random.Range(0, filteringEnemies.Count());
         while (prevEnemyId == randomType)
@@ -67,7 +68,8 @@ public class EnemiesController : MonoBehaviour
             randomType = Random.Range(0, filteringEnemies.Count());
         } 
         prevEnemyId = randomType;
-        EnemyVO enemyData = filteringEnemies.ElementAt(randomType);
+        EnemyVO enemyData = (EnemyVO)filteringEnemies.ElementAt(randomType).Clone();
+        ApplyStageBonuses(enemyData);
 
         if (checkEnemyTypeInEnum(enemyData.type))
         {
@@ -79,27 +81,35 @@ public class EnemiesController : MonoBehaviour
         }
     }
 
+    void ApplyStageBonuses(EnemyVO enemyData)
+    {
+        float startPower = float.Parse(DataModel.GetValue(Names.START_POWER).ToString());
+        float power = totalStagePower/startPower;
+        enemyData.hp *= power;
+        enemyData.power = (int)(enemyData.power * power);
+    }
+
     void WaveSelection(EnemyVO enemyData)
     {
-        if ((currentStagePower + wavePower) > totalStagePower)
+        if ((currentStagePower + _wavePower) > totalStagePower)
         {
-            wavePower = totalStagePower - currentStagePower;
+            _wavePower = totalStagePower - currentStagePower;
             finished = true; 
             Debug.Log("волны закончились");
         }
-        currentStagePower += wavePower; 
-        double count = Math.Ceiling((double)wavePower / enemyData.power);
+        currentStagePower += _wavePower; 
+        double count = Math.Ceiling((double)_wavePower / enemyData.power);
 
-        StartCoroutine(CreateWaves(count, enemyData.type));
+        StartCoroutine(CreateWaves(count, enemyData));
         Invoke("EnemyTypeSelection", WAVE_DELAY);
     }
      
-    IEnumerator CreateWaves(double count, string enemyType)
+    IEnumerator CreateWaves(double count, EnemyVO enemyData)
     {
         while (count > 0)
         {
             yield return new WaitForSeconds(Random.Range(0, ENEMY_DELAY)); 
-            CreateEnemy((EnemyTypes)Enum.Parse(typeof(EnemyTypes), enemyType));
+            CreateEnemy((EnemyTypes)Enum.Parse(typeof(EnemyTypes), enemyData.type), enemyData);
             count--;
         }
     }
@@ -109,10 +119,19 @@ public class EnemiesController : MonoBehaviour
         return Enum.IsDefined(typeof (EnemyTypes), enemyType);
     }
 
-    void CreateEnemy(EnemyTypes enemiesType)
+    void CreateEnemy(EnemyTypes enemiesType, EnemyVO enemyData)
 	{
         //EnemiesFactory.enemiesType enemiesType = Utils.RandomEnumValue<EnemyTypes>();  
         GameObject enemy = _enemiesFactory.Build(enemiesType);
+        Type type = Type.GetType(enemiesType.ToString());
+        AbstractEnemy enemyComponent = enemy.AddComponent(type) as AbstractEnemy;
+        enemyComponent.Data = enemyData;
         enemy.transform.position = new Vector3(Random.Range(-2.5f, 2.5f), 6.5f, 0);
-	}
+        Messenger.Broadcast<int>(EventTypes.LAUNCH, enemyData.power);
+    }
+
+    void Destroy()
+    {
+        DataModel.SetValue(Names.STAGE_POWER, 0);
+    }
 }

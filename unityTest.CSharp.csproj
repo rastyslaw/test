@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>5.3.4f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -69,8 +67,21 @@
     <Reference Include="UnityEditor.iOS.Extensions.Common">
       <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
     </Reference>
+    <Reference Include="DOTween">
+      <HintPath>Assets\DOTween\DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween43">
+      <HintPath>Assets\DOTween\DOTween43.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween46">
+      <HintPath>Assets\DOTween\DOTween46.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween50">
+      <HintPath>Assets\DOTween\DOTween50.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\ClearPlayerPrefs.cs" />
     <Compile Include="Assets\Scripts\DataModel.cs" />
     <Compile Include="Assets\Scripts\DataVO.cs" />
     <Compile Include="Assets\Scripts\EnemiesController.cs" />
@@ -87,6 +98,7 @@
     <Compile Include="Assets\Scripts\enemy\Enemy3.cs" />
     <Compile Include="Assets\Scripts\enemy\EnemyContainer.cs" />
     <Compile Include="Assets\Scripts\enemy\EnemyVO.cs" />
+    <Compile Include="Assets\Scripts\enemy\IClonable.cs" />
     <Compile Include="Assets\Scripts\enemy\IEnemy.cs" />
     <Compile Include="Assets\Scripts\libs\Callback.cs" />
     <Compile Include="Assets\Scripts\libs\Messenger.cs" />
@@ -120,10 +132,17 @@
     <Compile Include="Assets\Scripts\ui\IWindow.cs" />
     <Compile Include="Assets\Scripts\ui\InfoWindow.cs" />
     <Compile Include="Assets\Scripts\ui\OptionButton.cs" />
+    <Compile Include="Assets\Scripts\ui\StageProgress.cs" />
     <Compile Include="Assets\Scripts\ui\WindowsController.cs" />
     <Compile Include="Assets\Scripts\ui\WindowsFactory.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\DOTween\DOTween.XML" />
+    <None Include="Assets\DOTween\DOTween43.xml" />
+    <None Include="Assets\DOTween\DOTween46.xml" />
+    <None Include="Assets\DOTween\DOTween50.xml" />
+    <None Include="Assets\DOTween\Editor\DOTweenEditor.XML" />
+    <None Include="Assets\DOTween\readme.txt" />
     <None Include="Assets\Resources\enemies.xml" />
     <None Include="Assets\Resources\options.xml" />
     <None Include="Assets\Resources\ru.xml" />

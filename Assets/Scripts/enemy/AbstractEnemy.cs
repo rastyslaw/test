@@ -11,10 +11,12 @@ public abstract class AbstractEnemy: MonoBehaviour
     public EnemyVO Data
     {
         get { return data; }
+        set { data = value; }
     }
 
     void Awake()
     {
+        /*
         List<EnemyVO> enemies = DataModel.GetValue(Names.ENEMIES) as List<EnemyVO>;
         string type = GetType().ToString();
         foreach (EnemyVO enemyData in enemies)
@@ -25,7 +27,12 @@ public abstract class AbstractEnemy: MonoBehaviour
                 break;
             }
         }
-        AddSprite(gameObject, Resources.Load(respackName + data.resource) as Texture2D);
+        */
+    }
+
+    void Start()
+    {
+        AddSprite(gameObject, Resources.Load(respackName + Data.resource) as Texture2D);
     }
 
     void AddSprite(GameObject enemy, Texture2D _texture)

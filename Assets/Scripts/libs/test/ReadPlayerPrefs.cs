@@ -8,7 +8,7 @@ namespace Assets.Scripts.libs.test
     {
         public override void Execute()
         {
-            Debug.Log(this.ToString() + " execute");
+            Debug.Log(GetType() + " execute");
             LoadPlayerPrefs();
         }
 

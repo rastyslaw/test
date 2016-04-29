@@ -9,11 +9,11 @@ public class HealthPanel : MonoBehaviour
 
     void Start ()
     {
-        _curHealth = _maxHealth = 100.0f; //(float) DataModel.GetValue(Names.HP);
+        _curHealth = _maxHealth = float.Parse(DataModel.GetValue(Names.HP).ToString()); 
         _healtBar = transform.Find("fill").gameObject;
         Messenger.AddListener<float>(EventTypes.DAMAGE, OnGetDamage);
 
-        updateScale();
+        UpdateScale();
     }
 	
 	void OnGetDamage(float damage)
@@ -25,10 +25,10 @@ public class HealthPanel : MonoBehaviour
 	        _curHealth = 0;
             Messenger.RemoveListener<float>(EventTypes.DAMAGE, OnGetDamage);
         }
-        updateScale();
+        UpdateScale();
     }
 
-    void updateScale()
+    void UpdateScale()
     {
         _healtBar.transform.localScale = new Vector3(_curHealth / _maxHealth, _healtBar.transform.localScale.y, _healtBar.transform.localScale.z);
     }

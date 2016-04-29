@@ -7,7 +7,7 @@ namespace commands.test
     {
         public override void Execute()
         {
-            Debug.Log(this.ToString() + " execute");
+            Debug.Log(GetType() + " execute");
 
             EnemyContainer cont = EnemyContainer.Load(Names.ENEMIES);
             DataModel.SetValue(Names.ENEMIES, cont.enemies);

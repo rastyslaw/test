@@ -1,7 +1,9 @@
-﻿using System.Xml;
+﻿using System;
+using System.Xml;
 using System.Xml.Serialization;
+using Assets.Scripts.enemy;
 
-public class EnemyVO
+public class EnemyVO: IClonable
 {
     [XmlAttribute("id")]
     public int id;
@@ -32,4 +34,12 @@ public class EnemyVO
 
     [XmlElement("distance")]
     public float distance;
+    
+    public object Clone()
+    {
+        var copy = (EnemyVO)MemberwiseClone();
+        // Deep-copy children
+        //copy.Children = Children.Select(c => c.Clone()).ToList();
+        return copy;
+    }
 }

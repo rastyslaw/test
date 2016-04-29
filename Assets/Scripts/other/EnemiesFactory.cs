@@ -9,7 +9,6 @@ public class EnemiesFactory : MonoBehaviour {
     {
         GameObject enemy = (GameObject)Instantiate(basic, Vector3.zero, Quaternion.identity);
         enemy.name = type.ToString();
-        enemy.AddComponent(System.Type.GetType(type.ToString()));
         return enemy;
     }
     
