@@ -22,7 +22,8 @@ public class Enemy : MonoBehaviour {
             _curHealth = value; 
             if (_curHealth <= 0) 
             {
-                CancelInvoke("Attack"); 
+                CancelInvoke("Attack");
+                Messenger.Broadcast<AbstractEnemy>(EventTypes.DEAD, enemy);
                 Destroy(gameObject);
                 return;
             }

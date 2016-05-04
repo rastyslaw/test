@@ -13,6 +13,7 @@ namespace commands.test
         {
            Add<ParseXMLCommand>();
            Add<ReadPlayerPrefs>();
+           Add<LocaleCommand>();
 
            RegisterCompleteCallback(OnComplete);
         }

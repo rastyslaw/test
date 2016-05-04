@@ -82,16 +82,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\ClearPlayerPrefs.cs" />
-    <Compile Include="Assets\Scripts\DataModel.cs" />
-    <Compile Include="Assets\Scripts\DataVO.cs" />
-    <Compile Include="Assets\Scripts\EnemiesController.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\Fireball.cs" />
     <Compile Include="Assets\Scripts\HpBar.cs" />
-    <Compile Include="Assets\Scripts\LocaleModel.cs" />
     <Compile Include="Assets\Scripts\ParseXMLCommand.cs" />
-    <Compile Include="Assets\Scripts\TapController.cs" />
-    <Compile Include="Assets\Scripts\WeaponController.cs" />
+    <Compile Include="Assets\Scripts\commands\LocaleCommand.cs" />
+    <Compile Include="Assets\Scripts\commands\MacroCommand.cs" />
+    <Compile Include="Assets\Scripts\commands\ParseXMLCommand.cs" />
+    <Compile Include="Assets\Scripts\commands\ReadPlayerPrefs.cs" />
+    <Compile Include="Assets\Scripts\controllers\EnemiesController.cs" />
+    <Compile Include="Assets\Scripts\controllers\TapController.cs" />
+    <Compile Include="Assets\Scripts\controllers\WeaponController.cs" />
     <Compile Include="Assets\Scripts\enemy\AbstractEnemy.cs" />
     <Compile Include="Assets\Scripts\enemy\Enemy1.cs" />
     <Compile Include="Assets\Scripts\enemy\Enemy2.cs" />
@@ -111,14 +112,12 @@
     <Compile Include="Assets\Scripts\libs\commands\IMacro.cs" />
     <Compile Include="Assets\Scripts\libs\commands\ParallelMacro .cs" />
     <Compile Include="Assets\Scripts\libs\commands\SequenceMacro .cs" />
-    <Compile Include="Assets\Scripts\libs\test\MacroCommand.cs" />
-    <Compile Include="Assets\Scripts\libs\test\ParallelTestCommand.cs" />
-    <Compile Include="Assets\Scripts\libs\test\ParseXMLCommand.cs" />
-    <Compile Include="Assets\Scripts\libs\test\ReadPlayerPrefs.cs" />
-    <Compile Include="Assets\Scripts\libs\test\TestCommand3.cs" />
-    <Compile Include="Assets\Scripts\libs\test\TestCommand4.cs" />
+    <Compile Include="Assets\Scripts\model\DataModel.cs" />
+    <Compile Include="Assets\Scripts\model\LocaleModel.cs" />
     <Compile Include="Assets\Scripts\namesStorage\EventTypes.cs" />
+    <Compile Include="Assets\Scripts\namesStorage\LocaleTypes.cs" />
     <Compile Include="Assets\Scripts\namesStorage\Names.cs" />
+    <Compile Include="Assets\Scripts\namesStorage\SceneId.cs" />
     <Compile Include="Assets\Scripts\namesStorage\WindowsId.cs" />
     <Compile Include="Assets\Scripts\other\EnemiesFactory.cs" />
     <Compile Include="Assets\Scripts\other\EnemyTypes.cs" />
@@ -128,13 +127,18 @@
     <Compile Include="Assets\Scripts\other\Timer.cs" />
     <Compile Include="Assets\Scripts\other\Utils.cs" />
     <Compile Include="Assets\Scripts\ui\BaseWindow.cs" />
+    <Compile Include="Assets\Scripts\ui\CanvasPanel.cs" />
     <Compile Include="Assets\Scripts\ui\HealthPanel.cs" />
     <Compile Include="Assets\Scripts\ui\IWindow.cs" />
     <Compile Include="Assets\Scripts\ui\InfoWindow.cs" />
+    <Compile Include="Assets\Scripts\ui\LoseWindow.cs" />
+    <Compile Include="Assets\Scripts\ui\MainMenu.cs" />
     <Compile Include="Assets\Scripts\ui\OptionButton.cs" />
     <Compile Include="Assets\Scripts\ui\StageProgress.cs" />
+    <Compile Include="Assets\Scripts\ui\WinWindow.cs" />
     <Compile Include="Assets\Scripts\ui\WindowsController.cs" />
     <Compile Include="Assets\Scripts\ui\WindowsFactory.cs" />
+    <Compile Include="Assets\Scripts\vo\DataVO.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\DOTween\DOTween.XML" />

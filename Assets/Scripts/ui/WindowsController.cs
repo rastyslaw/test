@@ -1,21 +1,36 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class WindowsController : MonoBehaviour {
    
     private Dictionary<WindowsId, IWindow> windows;
 
     public IWindow CurrentWindow { get; private set; }
-    
+
+    private bool _created;
+
     void Awake()
     {
-        DontDestroyOnLoad(this); 
+        if (!_created)
+        {
+            DontDestroyOnLoad(this.gameObject);
+            _created = true;
 
-        windows = new Dictionary<WindowsId, IWindow>();
-
+            windows = new Dictionary<WindowsId, IWindow>();
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
         Messenger.AddListener<WindowsId>(EventTypes.SHOW_WINDOW, OpenWindow);
-        Messenger.AddListener<WindowsId>(EventTypes.HIDEW_WINDOW, HideWindow); 
+        Messenger.AddListener<WindowsId>(EventTypes.HIDE_WINDOW, HideWindow);
+    }
+    
+    public void OnLevelWasLoaded(int unused)
+    {
+        CurrentWindow = null;
     }
 
     /*
@@ -63,6 +78,6 @@ public class WindowsController : MonoBehaviour {
     void OnDestroy() 
     {
         Messenger.RemoveListener<WindowsId>(EventTypes.SHOW_WINDOW, OpenWindow);
-        Messenger.RemoveListener<WindowsId>(EventTypes.HIDEW_WINDOW, HideWindow);
+        Messenger.RemoveListener<WindowsId>(EventTypes.HIDE_WINDOW, HideWindow);
     }
 }

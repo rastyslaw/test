@@ -12,7 +12,7 @@ public class HealthPanel : MonoBehaviour
         _curHealth = _maxHealth = float.Parse(DataModel.GetValue(Names.HP).ToString()); 
         _healtBar = transform.Find("fill").gameObject;
         Messenger.AddListener<float>(EventTypes.DAMAGE, OnGetDamage);
-
+        
         UpdateScale();
     }
 	
@@ -20,10 +20,11 @@ public class HealthPanel : MonoBehaviour
     {
 	    Debug.Log("получил " + damage + " урона!");
 	    _curHealth -= damage;
-	    if (_curHealth < 0)
+        if (_curHealth < 0)
 	    {
 	        _curHealth = 0;
             Messenger.RemoveListener<float>(EventTypes.DAMAGE, OnGetDamage);
+            Messenger.Broadcast<WindowsId>(EventTypes.SHOW_WINDOW, WindowsId.LoseWindow);
         }
         UpdateScale();
     }

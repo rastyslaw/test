@@ -1,4 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <locale name="ru">
-    <text id="STAGE">Уровень {}</text>
+    <text id="CLOSE">Закрыть</text>
+    <text id="WIN">Уровень пройден!</text>
+    <text id="LOSE">Не вышло!</text>
+    <text id="PLAY">Играть</text>
+    <text id="STAGE">Уровень %1 пройден за %2 секунд</text>
 </locale>

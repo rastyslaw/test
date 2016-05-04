@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.Experimental.Director;
+using UnityEngine.UI;
 
 public abstract class BaseWindow : IWindow
 {
@@ -13,7 +15,7 @@ public abstract class BaseWindow : IWindow
         Body = WindowsFactory.Build(body as GameObject);
         Body.name = ToString();  
     }
-
+    
     public virtual void Show()
     {
         if (Body == null)
@@ -28,9 +30,15 @@ public abstract class BaseWindow : IWindow
         Body.SetActive(false);
     }
 
+    protected virtual void ChangeClip(AnimationClip clip)
+    {
+        var clipPlayable = new AnimationClipPlayable(clip);
+        Body.GetComponent<Animator>().Play(clipPlayable);
+    }
+
     protected virtual void Close()
     {
-        Messenger.Broadcast<WindowsId>(EventTypes.HIDEW_WINDOW, type);  
+        Messenger.Broadcast<WindowsId>(EventTypes.HIDE_WINDOW, type);  
     }
 
     public virtual void Prepare()

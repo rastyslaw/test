@@ -1,4 +1,6 @@
 ﻿public enum WindowsId
 {
-    InfoWindow
+    InfoWindow,
+    LoseWindow,
+    WinWindow
 }

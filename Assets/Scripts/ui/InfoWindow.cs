@@ -1,4 +1,4 @@
-﻿using System.Reflection.Emit;
+﻿using System.Collections;
 using System.Timers;
 using UnityEngine;
 using UnityEngine.Experimental.Director;
@@ -16,18 +16,21 @@ public class InfoWindow : BaseWindow
         base.Init();
         //closeButton = Body.GetComponentInChildren<Button>();
         //closeButton.onClick.AddListener(OnCloseBtnClick);
-
+        
         AnimationClip clip = (AnimationClip) Resources.Load("Animations/windowAlpha");
         ChangeClip(clip); 
 
         Text label = Body.GetComponentInChildren<Text>();
-        label.text = "Уровень 1";
+        label.text = LocaleModel.Instance.GetParamsString("STAGE", new [] {"1", "4"});
 
         timer = new System.Timers.Timer(DELAY); 
         timer.Elapsed += new ElapsedEventHandler(OnTimerComplete);
         //timer.Start();
-    }
 
+        string test = "12rhdrh";
+        string.Intern(test);
+    }
+    
     void ChangeClip(AnimationClip clip)
     {
         var clipPlayable = new AnimationClipPlayable(clip);

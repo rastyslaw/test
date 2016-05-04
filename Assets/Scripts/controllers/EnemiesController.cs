@@ -10,6 +10,7 @@ public class EnemiesController : MonoBehaviour
 {
     private int prevEnemyId = -1;
 
+    private List<AbstractEnemy> _enemies;
     private EnemiesFactory _enemiesFactory;
     private int totalStagePower;
     private int currentStagePower = 0;
@@ -18,33 +19,41 @@ public class EnemiesController : MonoBehaviour
     private bool finished;
 
     private const int WAVE_COUNT = 5;
-    private const float ENEMY_DELAY = 0.9f;
+    private const float ENEMY_DELAY = 1.3f;
     private const int WAVE_DELAY = 5;
 
     void Awake()
     {
+        _enemies = new List<AbstractEnemy>();
         _enemiesFactory = GetComponent<EnemiesFactory>(); 
     }
 
     void Start ()
     {
-        Messenger.Broadcast<WindowsId>(EventTypes.SHOW_WINDOW, WindowsId.InfoWindow);
-        StartCoroutine(Timer.Start(3.0f, false, () =>
-        {
-            Messenger.Broadcast<WindowsId>(EventTypes.HIDEW_WINDOW, WindowsId.InfoWindow); 
-        }));
+        Invoke("ShowInfoWindow", 0.9f);
         GetStagePower();
+        Messenger.AddListener<AbstractEnemy>(EventTypes.DEAD, OnEnemyDead);
         if (!finished)
         {
             Invoke("EnemyTypeSelection", WAVE_DELAY);
         }
     }
 
+    void ShowInfoWindow()
+    {
+        Messenger.Broadcast<WindowsId>(EventTypes.SHOW_WINDOW, WindowsId.InfoWindow);
+        StartCoroutine(Timer.Start(3.0f, false, () =>
+        {
+            Messenger.Broadcast<WindowsId>(EventTypes.HIDE_WINDOW, WindowsId.InfoWindow);
+        }));
+    }
+    
     void GetStagePower()
     {
-        int stage = (int)DataModel.GetValue(Names.STAGE);
-        int startPower = int.Parse(DataModel.GetValue(Names.START_POWER).ToString()); 
-        int bonusPower = int.Parse(DataModel.GetValue(Names.BONUS_POWER).ToString()); 
+        var stage = (int)DataModel.GetValue(Names.STAGE);
+        Debug.Log(stage);
+        var startPower = int.Parse(DataModel.GetValue(Names.START_POWER).ToString());
+        var bonusPower = int.Parse(DataModel.GetValue(Names.BONUS_POWER).ToString()); 
         totalStagePower = startPower + (stage - 1)*bonusPower;
         DataModel.SetValue(Names.STAGE_POWER, totalStagePower);
         _wavePower = totalStagePower/WAVE_COUNT;
@@ -52,8 +61,8 @@ public class EnemiesController : MonoBehaviour
 
     void EnemyTypeSelection()
     {
-        List<EnemyVO> enemies = DataModel.GetValue(Names.ENEMIES) as List<EnemyVO>;
-        int stage = (int)DataModel.GetValue(Names.STAGE);
+        var enemies = DataModel.GetValue(Names.ENEMIES) as List<EnemyVO>;
+        var stage = (int)DataModel.GetValue(Names.STAGE);
 
         //IEnumerable<EnemyVO>  filteringEnemies = enemies.Where(item => stage >= item.stageId);
 
@@ -91,7 +100,7 @@ public class EnemiesController : MonoBehaviour
 
     void WaveSelection(EnemyVO enemyData)
     {
-        if ((currentStagePower + _wavePower) > totalStagePower)
+        if ((currentStagePower + _wavePower) >= totalStagePower)
         {
             _wavePower = totalStagePower - currentStagePower;
             finished = true; 
@@ -125,12 +134,31 @@ public class EnemiesController : MonoBehaviour
         GameObject enemy = _enemiesFactory.Build(enemiesType);
         Type type = Type.GetType(enemiesType.ToString());
         AbstractEnemy enemyComponent = enemy.AddComponent(type) as AbstractEnemy;
+        _enemies.Add(enemyComponent);
         enemyComponent.Data = enemyData;
         enemy.transform.position = new Vector3(Random.Range(-2.5f, 2.5f), 6.5f, 0);
         Messenger.Broadcast<int>(EventTypes.LAUNCH, enemyData.power);
     }
 
-    void Destroy()
+    void OnEnemyDead(AbstractEnemy deadEnemy)
+    {
+        foreach (var enemy in _enemies)
+        {
+            if (enemy == deadEnemy)
+            {
+                _enemies.Remove(enemy); 
+                break;
+            }
+        }
+        Debug.Log("_enemies.Count = " + _enemies.Count + ", finished = " + finished);
+        if (finished && _enemies.Count == 0)
+        {
+            Messenger.RemoveListener<AbstractEnemy>(EventTypes.DEAD, OnEnemyDead);
+            Messenger.Broadcast<WindowsId>(EventTypes.SHOW_WINDOW, WindowsId.WinWindow); 
+        }
+    }
+
+    void OnDestroy()
     {
         DataModel.SetValue(Names.STAGE_POWER, 0);
     }

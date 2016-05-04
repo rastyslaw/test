@@ -1,14 +1,20 @@
 ﻿using UnityEngine;
 
-public class WindowsFactory : MonoBehaviour {
-
-    static public GameObject Build(GameObject prefab) 
+public class WindowsFactory : MonoBehaviour
+{
+    private static Canvas canvas;
+    
+    public static GameObject Build(GameObject prefab) 
     {
         GameObject window = Instantiate(prefab);
+        if (canvas == null)
+        {
+            canvas = GameObject.FindObjectOfType<Canvas>();
+        }
         if (window != null)
         {
             Transform t = window.transform;
-            t.SetParent(GameObject.FindObjectOfType<Canvas>().gameObject.transform, false); 
+            t.SetParent(canvas.gameObject.transform, false); 
             //t.parent = parent.transform;
             t.localPosition = Vector3.zero;
             t.localRotation = Quaternion.identity;
