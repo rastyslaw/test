@@ -21,7 +21,7 @@ public class InfoWindow : BaseWindow
         ChangeClip(clip); 
 
         Text label = Body.GetComponentInChildren<Text>();
-        label.text = LocaleModel.Instance.GetParamsString("STAGE", new [] {"1", "4"});
+        label.text = LocaleModel.Instance.GetParamsString("STAGE", new [] {"1", "982"});
 
         timer = new System.Timers.Timer(DELAY); 
         timer.Elapsed += new ElapsedEventHandler(OnTimerComplete);

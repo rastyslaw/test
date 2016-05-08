@@ -71,10 +71,39 @@ public class LocaleModel
     public string ReplaceStringValues(string key, string[] args)
     {
         var len = args.Length;
-        for (var i = 0; i < len; i++)
+
+        string pattern = @"%\d";
+        Regex regex = new Regex(pattern);
+        MatchCollection matches = regex.Matches(key);
+
+        if (len != matches.Count)
         {
-            key = key.Replace("%" + (i+1), args[i]);
+            Debug.Log("LocaleModel: need more args in " + key);
+            return key;
         }
+
+        int index = 0;
+        pattern = @"%\d{\w+}";
+        regex = new Regex(pattern);
+
+        var tagReqExp = new Regex(@"[A-Z_]+");
+
+        foreach (Match match in matches)
+        {
+            if (key.Substring(match.Index + match.Length - 1, 1) == "{")
+            {
+                var numString = key.Substring(match.Index-1); 
+                var result = regex.Match(numString);
+                var localeTag = tagReqExp.Match(result.Value);
+                key = key.Replace(result.Value, GameUtils.ReplaceTail(args[index], (string)GetString(localeTag.Value)));
+            }
+            else
+            {
+                key = key.Replace(match.Value, args[index]);
+            }
+            index++;
+        }
+
         return key;
-	}
+    }
 }

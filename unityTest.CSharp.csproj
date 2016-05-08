@@ -84,6 +84,7 @@
     <Compile Include="Assets\Scripts\ClearPlayerPrefs.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\Fireball.cs" />
+    <Compile Include="Assets\Scripts\GameUtils.cs" />
     <Compile Include="Assets\Scripts\HpBar.cs" />
     <Compile Include="Assets\Scripts\ParseXMLCommand.cs" />
     <Compile Include="Assets\Scripts\commands\LocaleCommand.cs" />
