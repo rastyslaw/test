@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class GameUtils
+public class GameUtils : MonoBehaviour
 {
     public static string ReplaceTail(string count, string text)
     {
@@ -32,5 +35,45 @@ public class GameUtils
             totalString += data[2];
         }
         return count + " " + totalString;
+    }
+
+    public static GameObject CreateAwardPanel(Dictionary<string, int> data)
+    {
+        GameObject awardContainer = new GameObject();
+        awardContainer.AddComponent<RectTransform>();
+        var prefab = Resources.Load("Prefabs/GUI/Award");
+       
+        var layout = new EditorGUILayout();
+
+        float cumulativeX = 0f;
+        const float GAP = 26.0f;
+        
+        foreach (var awardData in data)
+        {
+            float awardCumulativeX = 0f;
+
+            GameObject award = WindowsFactory.InstantiatePrefab(prefab as GameObject);
+            Texture2D texture = Resources.Load("gui/" + awardData.Key) as Texture2D;
+            Sprite newSprite = Sprite.Create(texture, new Rect(0f, 0f, texture.width, texture.height), new Vector2(0.5f, 0.5f), 128f);
+            Image sprRenderer = award.GetComponentInChildren<Image>();
+            sprRenderer.sprite = newSprite;
+            awardCumulativeX += sprRenderer.preferredWidth;
+
+            Text label = award.GetComponentInChildren<Text>();
+            label.text = awardData.Value.ToString();
+            awardCumulativeX += label.preferredWidth;
+
+            Transform transform = award.transform;
+            transform.localPosition = new Vector3(cumulativeX, 0);
+            transform.SetParent(awardContainer.gameObject.transform, false);
+            RectTransform rectTransform = award.GetComponent<RectTransform>();
+            rectTransform.sizeDelta = new Vector2(awardCumulativeX, rectTransform.sizeDelta.y);
+            
+            cumulativeX += awardCumulativeX;
+            cumulativeX += GAP;
+        }
+        RectTransform awardContainerTransform = awardContainer.GetComponent<RectTransform>();
+        awardContainerTransform.sizeDelta = new Vector2(cumulativeX, awardContainerTransform.sizeDelta.y);
+        return awardContainer;
     }
 }

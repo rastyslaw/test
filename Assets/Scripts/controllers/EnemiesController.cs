@@ -18,7 +18,7 @@ public class EnemiesController : MonoBehaviour
 
     private bool finished;
 
-    private const int WAVE_COUNT = 5;
+    private const int WAVE_COUNT = 1;
     private const float ENEMY_DELAY = 1.3f;
     private const int WAVE_DELAY = 5;
 
@@ -51,7 +51,6 @@ public class EnemiesController : MonoBehaviour
     void GetStagePower()
     {
         var stage = (int)DataModel.GetValue(Names.STAGE);
-        Debug.Log(stage);
         var startPower = int.Parse(DataModel.GetValue(Names.START_POWER).ToString());
         var bonusPower = int.Parse(DataModel.GetValue(Names.BONUS_POWER).ToString()); 
         totalStagePower = startPower + (stage - 1)*bonusPower;

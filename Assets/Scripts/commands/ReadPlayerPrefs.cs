@@ -20,7 +20,6 @@ namespace Assets.Scripts.libs.test
                 stage = PlayerPrefs.GetInt(Names.STAGE); 
             }
             DataModel.SetValue(Names.STAGE, stage);
-            
             DispatchComplete(true);
             /*
             if (PlayerPrefs.HasKey("saveFloat")) loadFloat = PlayerPrefs.GetFloat("saveFloat");

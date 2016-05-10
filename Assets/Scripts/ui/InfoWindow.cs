@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Timers;
 using UnityEngine;
 using UnityEngine.Experimental.Director;
@@ -21,12 +22,13 @@ public class InfoWindow : BaseWindow
         ChangeClip(clip); 
 
         Text label = Body.GetComponentInChildren<Text>();
-        label.text = LocaleModel.Instance.GetParamsString("STAGE", new [] {"1", "982"});
+        string stage = DataModel.GetValue(Names.STAGE).ToString();
+        label.text = LocaleModel.Instance.GetParamsString("STAGE", new [] {stage, "982"});
 
         timer = new System.Timers.Timer(DELAY); 
         timer.Elapsed += new ElapsedEventHandler(OnTimerComplete);
         //timer.Start();
-
+        
         string test = "12rhdrh";
         string.Intern(test);
     }
