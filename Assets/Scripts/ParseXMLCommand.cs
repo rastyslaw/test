@@ -5,8 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class ParseXMLCommand : MonoBehaviour {
     
-	void Awake () 
+	void Awake ()
+	{
+	    MacroCommand macroCommand = new MacroCommand();
+        macroCommand.RegisterCompleteCallback(OnComplete);
+        macroCommand.Execute();
+    }
+
+    void OnComplete(bool success)
     {
-        new MacroCommand().Execute();
+        SceneManager.LoadScene(SceneId.MAIN);
     }
 }

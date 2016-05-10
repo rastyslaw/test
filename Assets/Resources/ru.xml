@@ -5,4 +5,5 @@
     <text id="PLAY">Играть</text>
     <text id="STAGE">Уровень %1 пройден за %2{SECONDS}</text>
     <text id="SECONDS">секунд{у|ы|}</text>
+    <text id="AWARD">Награда:</text>
 </locale>

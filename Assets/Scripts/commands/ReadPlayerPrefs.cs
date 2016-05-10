@@ -20,6 +20,10 @@ namespace Assets.Scripts.libs.test
                 stage = PlayerPrefs.GetInt(Names.STAGE); 
             }
             DataModel.SetValue(Names.STAGE, stage);
+            
+            DataModel.SetValue(Names.MONEY, PlayerPrefs.HasKey(Names.MONEY) ? PlayerPrefs.GetInt(Names.MONEY) : 0);
+            DataModel.SetValue(Names.WEAPON, PlayerPrefs.HasKey(Names.WEAPON) ? PlayerPrefs.GetInt(Names.WEAPON) : WeaponId.Weapon1);
+
             DispatchComplete(true);
             /*
             if (PlayerPrefs.HasKey("saveFloat")) loadFloat = PlayerPrefs.GetFloat("saveFloat");

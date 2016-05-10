@@ -119,6 +119,7 @@
     <Compile Include="Assets\Scripts\namesStorage\LocaleTypes.cs" />
     <Compile Include="Assets\Scripts\namesStorage\Names.cs" />
     <Compile Include="Assets\Scripts\namesStorage\SceneId.cs" />
+    <Compile Include="Assets\Scripts\namesStorage\WeaponId.cs" />
     <Compile Include="Assets\Scripts\namesStorage\WindowsId.cs" />
     <Compile Include="Assets\Scripts\other\EnemiesFactory.cs" />
     <Compile Include="Assets\Scripts\other\EnemyTypes.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="Assets\Scripts\ui\InfoWindow.cs" />
     <Compile Include="Assets\Scripts\ui\LoseWindow.cs" />
     <Compile Include="Assets\Scripts\ui\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\ui\MoneyPanel.cs" />
     <Compile Include="Assets\Scripts\ui\OptionButton.cs" />
     <Compile Include="Assets\Scripts\ui\StageProgress.cs" />
     <Compile Include="Assets\Scripts\ui\WinWindow.cs" />

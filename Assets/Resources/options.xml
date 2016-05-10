@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <options>
 	<hp>100</hp>
+	
 	<startPower>5</startPower>
 	<bonusPower>5</bonusPower> 
+	
+	<startStageMoney>12</startStageMoney> 
+	<bonusStageMoney>4</bonusStageMoney> 
+	<randomStageMoney>0.2</randomStageMoney>  
 </options>

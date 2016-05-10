@@ -18,23 +18,26 @@ public class WinWindow : BaseWindow
 
         _closeButton = Body.GetComponentInChildren<Button>();
         _closeButton.onClick.AddListener(OnCloseBtnClick);
+        
+        Text[] labels = Body.GetComponentsInChildren<Text>();
+        foreach (var label in labels)
+        {
+           label.text = (string)LocaleModel.Instance.GetString(label.name);
+        }
 
         Text _buttonText = _closeButton.GetComponentInChildren<Text>();
-        _buttonText.text = (string) LocaleModel.Instance.GetString("CLOSE");
+        _buttonText.text = (string)LocaleModel.Instance.GetString("CLOSE");
 
-        Text label = Body.GetComponentInChildren<Text>();
-        label.text = (string) LocaleModel.Instance.GetString("WIN");
-       
         Dictionary<string, int> data = new Dictionary<string, int>();
-        data.Add("coin", 13);
-        data.Add("cash", 4);
-        data.Add("energy", 99);
+        int money = GameUtils.GetStageMoney();
+        data.Add("coin", money);
+        DataModel.SetValue(Names.MONEY, money);
         GameObject awardContainer = GameUtils.CreateAwardPanel(data);
 
         Transform t = awardContainer.transform;
         t.SetParent(Body.gameObject.transform, false);
         var rectTransform = awardContainer.GetComponent<RectTransform>();
-        t.localPosition = new Vector3(-rectTransform.sizeDelta.x/2, 20.0f);
+        t.localPosition = new Vector3(-rectTransform.sizeDelta.x/2, 0);
         t.localRotation = Quaternion.identity;
         t.localScale = Vector3.one;
     }
