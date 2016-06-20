@@ -42,10 +42,11 @@ public abstract class AbstractEnemy: MonoBehaviour
         sprRenderer.sprite = newSprite;
     }
 
-    void Update()
-    {
-
-    }
-
     public abstract void Attack();
+
+    public void Stop()
+    {
+        Enemy enemy = GetComponentInParent<Enemy>();
+        enemy.StageCompleted = true;
+    }
 }

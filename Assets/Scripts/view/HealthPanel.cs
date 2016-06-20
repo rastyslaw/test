@@ -11,11 +11,22 @@ public class HealthPanel : MonoBehaviour
     {
         _curHealth = _maxHealth = float.Parse(DataModel.GetValue(Names.HP).ToString()); 
         _healtBar = transform.Find("fill").gameObject;
-        Messenger.AddListener<float>(EventTypes.DAMAGE, OnGetDamage);
-        
+        Messenger.AddListener<DataVO>(EventTypes.DATA_UPDATE, OnDataUpdate);
         UpdateScale();
     }
-	
+
+    void OnDataUpdate(DataVO data)
+    {
+        if (data.Key == Names.CURRENT_SHIELD_VALUE)
+        {
+            if (int.Parse(data.Value.ToString()) == 0) 
+            {
+                Messenger.AddListener<float>(EventTypes.DAMAGE, OnGetDamage);
+                Messenger.RemoveListener<DataVO>(EventTypes.DATA_UPDATE, OnDataUpdate); 
+            }    
+        }
+    }
+
 	void OnGetDamage(float damage)
     {
 	    Debug.Log("получил " + damage + " урона!");
@@ -24,6 +35,7 @@ public class HealthPanel : MonoBehaviour
 	    {
 	        _curHealth = 0;
             Messenger.RemoveListener<float>(EventTypes.DAMAGE, OnGetDamage);
+            Messenger.Broadcast<bool>(EventTypes.STAGE_COMPLETED, false);
             Messenger.Broadcast<WindowsId>(EventTypes.SHOW_WINDOW, WindowsId.LoseWindow);
         }
         UpdateScale();

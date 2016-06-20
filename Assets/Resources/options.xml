@@ -2,8 +2,8 @@
 <options>
 	<hp>100</hp>
 	
-	<startPower>5</startPower>
-	<bonusPower>5</bonusPower> 
+	<startPower>100</startPower>
+	<bonusPower>20</bonusPower> 
 	
 	<startStageMoney>12</startStageMoney> 
 	<bonusStageMoney>4</bonusStageMoney> 

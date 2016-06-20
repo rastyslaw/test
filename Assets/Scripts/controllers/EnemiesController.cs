@@ -18,7 +18,7 @@ public class EnemiesController : MonoBehaviour
 
     private bool finished;
 
-    private const int WAVE_COUNT = 1;
+    private const int WAVE_COUNT = 6;
     private const float ENEMY_DELAY = 1.3f;
     private const int WAVE_DELAY = 5;
 
@@ -36,6 +36,17 @@ public class EnemiesController : MonoBehaviour
         if (!finished)
         {
             Invoke("EnemyTypeSelection", WAVE_DELAY);
+        }
+        Messenger.AddListener<bool>(EventTypes.STAGE_COMPLETED, OnStageCompleted);
+    }
+
+    void OnStageCompleted(bool isWin)
+    {
+        finished = true;
+        CancelInvoke("EnemyTypeSelection");
+        foreach (var enemy in _enemies)
+        {
+            enemy.Stop();
         }
     }
 
@@ -153,6 +164,7 @@ public class EnemiesController : MonoBehaviour
         if (finished && _enemies.Count == 0)
         {
             Messenger.RemoveListener<AbstractEnemy>(EventTypes.DEAD, OnEnemyDead);
+            Messenger.Broadcast<bool>(EventTypes.STAGE_COMPLETED, true); 
             Messenger.Broadcast<WindowsId>(EventTypes.SHOW_WINDOW, WindowsId.WinWindow); 
         }
     }
@@ -160,5 +172,6 @@ public class EnemiesController : MonoBehaviour
     void OnDestroy()
     {
         DataModel.SetValue(Names.STAGE_POWER, 0);
+        Messenger.RemoveListener<bool>(EventTypes.STAGE_COMPLETED, OnStageCompleted);
     }
 }

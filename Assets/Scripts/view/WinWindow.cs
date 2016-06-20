@@ -31,7 +31,9 @@ public class WinWindow : BaseWindow
         Dictionary<string, int> data = new Dictionary<string, int>();
         int money = GameUtils.GetStageMoney();
         data.Add("coin", money);
-        DataModel.SetValue(Names.MONEY, money);
+        int totalMoney = int.Parse(DataModel.GetValue(Names.MONEY).ToString());
+        totalMoney += money;
+        DataModel.SetValue(Names.MONEY, totalMoney);
         GameObject awardContainer = GameUtils.CreateAwardPanel(data);
 
         Transform t = awardContainer.transform;

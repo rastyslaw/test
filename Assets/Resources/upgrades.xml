@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<upgrades>
+	<upgrade id="1" type="attack">
+		<tab>Passive</tab>
+		<value>2</value>
+		<valueStep>0.25</valueStep>
+		<price>10</price>
+		<priceStep>0.4</priceStep>
+		<image></image>
+	</upgrade>
+	<upgrade id="2" type="speed">
+		<tab>Passive</tab>
+		<value>0.02</value>
+		<price>10</price>
+		<priceStep>0.2</priceStep>
+		<maxSteps>10</maxSteps>
+		<image></image>
+	</upgrade>
+	<upgrade id="3" type="regen">
+		<tab>Passive</tab>
+		<value>10</value>
+		<price>12</price>
+		<priceStep>0.2</priceStep>
+		<maxSteps>5</maxSteps>
+		<image></image>
+	</upgrade>
+	<upgrade id="4" type="hp">
+		<tab>Passive</tab>
+		<value>10</value>
+		<price>12</price>
+		<priceStep>0.2</priceStep>
+		<image></image>
+	</upgrade>
+	<upgrade id="5" type="weapon">
+		<tab>Items</tab> 
+		<steps>
+			<step id="2" price="50" image=""/>
+			<step id="3" price="350" image=""/>
+		</steps>
+	</upgrade>
+	<upgrade id="6" type="armor">
+		<tab>Items</tab> 
+		<steps>
+			<step id="1" price="50" image=""/>
+			<step id="2" price="350" image=""/>
+		</steps>
+	</upgrade>
+	<upgrade id="7" type="mp"> 
+		<tab>Active</tab>  
+		<value>10</value>
+		<price>12</price>
+		<priceStep>0.2</priceStep>
+		<image></image> 
+	</upgrade>
+	<upgrade id="8" type="fireball">
+		<tab>Active</tab>  
+		<value>10</value>
+		<price>12</price>
+		<priceStep>0.2</priceStep>
+		<image></image> 
+	</upgrade>
+	<upgrade id="9" type="ice">
+		<tab>Active</tab>  
+		<value>11</value>
+		<price>12</price>
+		<priceStep>0.2</priceStep>
+		<image></image> 
+	</upgrade>
+	<upgrade id="10" type="lightning">
+		<tab>Active</tab>  
+		<value>12</value>
+		<price>12</price>
+		<priceStep>0.2</priceStep>
+		<image></image> 
+	</upgrade>
+</upgrades>

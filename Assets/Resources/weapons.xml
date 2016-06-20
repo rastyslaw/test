@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<weapons>
+	<weapon id="1">
+		<resource>blueBall</resource>
+		<damage>35</damage>
+		<speed>0.8</speed>
+	</weapon>
+	<weapon id="2">
+		<resource>redBall</resource>
+		<damage>55</damage>
+		<speed>0.6</speed>
+	</weapon>
+	<weapon id="3">
+		<resource>greenBall</resource>
+		<damage>80</damage>
+		<speed>0.4</speed>
+	</weapon>
+</weapons>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -43,9 +42,7 @@ public class GameUtils : MonoBehaviour
         GameObject awardContainer = new GameObject();
         awardContainer.AddComponent<RectTransform>();
         var prefab = Resources.Load("Prefabs/GUI/Award");
-
-        var layout = new EditorGUILayout();
-
+      
         float cumulativeX = 0f;
         const float GAP = 26.0f;
 

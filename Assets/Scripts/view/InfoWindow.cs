@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Timers;
+﻿using System.Timers;
 using UnityEngine;
-using UnityEngine.Experimental.Director;
 using UnityEngine.UI;
 
 public class InfoWindow : BaseWindow
@@ -33,12 +30,6 @@ public class InfoWindow : BaseWindow
         string.Intern(test);
     }
     
-    void ChangeClip(AnimationClip clip)
-    {
-        var clipPlayable = new AnimationClipPlayable(clip);
-        Body.GetComponent<Animator>().Play(clipPlayable);  
-    }
-
     private void OnTimerComplete(object source, ElapsedEventArgs e)
     {
         OnCloseBtnClick();  

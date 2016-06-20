@@ -1,11 +1,12 @@
 ﻿public class EventTypes
 {
-    static public string DAMAGE         = "damage"; 
-    static public string LAUNCH         = "launch"; 
-    static public string DATA_UPDATE    = "dataUpdate"; 
-    static public string SHOW_WINDOW    = "showWindow"; 
-    static public string HIDE_WINDOW    = "hideWindow"; 
-    static public string PAUSE          = "pause"; 
-    static public string DEAD           = "dead"; 
+    public static string DAMAGE          = "damage"; 
+    public static string LAUNCH          = "launch"; 
+    public static string DATA_UPDATE     = "dataUpdate"; 
+    public static string SHOW_WINDOW     = "showWindow"; 
+    public static string HIDE_WINDOW     = "hideWindow"; 
+    public static string PAUSE           = "pause"; 
+    public static string STAGE_COMPLETED = "stageCompleted"; 
+    public static string DEAD            = "dead"; 
 
 }

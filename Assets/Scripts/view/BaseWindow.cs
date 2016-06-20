@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.Experimental.Director;
-using UnityEngine.UI;
 
 public abstract class BaseWindow : IWindow
 {

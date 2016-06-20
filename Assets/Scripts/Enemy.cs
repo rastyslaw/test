@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour {
     private GameObject _healtBar;
     private AbstractEnemy enemy;
 
+    private bool _stageCompleted;
+
     public float CurHealth
     {
         get { return _curHealth; }
@@ -30,7 +32,19 @@ public class Enemy : MonoBehaviour {
             _healtBar.transform.localScale = new Vector3(_curHealth / MaxHealth, _healtBar.transform.localScale.y, _healtBar.transform.localScale.z);
         }
     }
-    
+
+    public bool StageCompleted
+    {
+        set
+        {
+            _stageCompleted = value;
+            if (_stageCompleted)
+            {
+                CancelInvoke("Attack");
+            }
+        }
+    }
+
     void Start()
     {
         enemy = GetComponent<AbstractEnemy>(); 
@@ -43,10 +57,10 @@ public class Enemy : MonoBehaviour {
     }
 
     void Update()
-    {
-        if (transform.position.y > -(bottom - enemy.Data.distance))
+    { 
+        if (!_stageCompleted && transform.position.y > -(bottom - enemy.Data.distance))
         {
-            transform.Translate(0, -enemy.Data.speed *Time.deltaTime, 0);
+            transform.Translate(0, -enemy.Data.speed * Time.deltaTime, 0);
         }
         else if(!inAttack)
         {
@@ -59,5 +73,10 @@ public class Enemy : MonoBehaviour {
     {
         enemy.Attack(); 
         Messenger.Broadcast<float>(EventTypes.DAMAGE, enemy.Data.damage);   
+    }
+
+    void Stop()
+    {
+        CancelInvoke("Attack");
     }
 }

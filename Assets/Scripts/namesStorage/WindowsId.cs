@@ -2,5 +2,6 @@
 {
     InfoWindow,
     LoseWindow,
-    WinWindow
+    WinWindow,
+    UpgradesWindow
 }
